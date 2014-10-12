@@ -1,4 +1,5 @@
-nikhil-theme
-============
+this is a simple bootstrap pelican theme based on bootstrap [Narrow jumbotron](http://getbootstrap.com/examples/jumbotron-narrow/) template
 
-Clean bootstrap based theme for Pelican static site generator
+## Screenshot ##
+
+![screenshot](screenshot.png)
