@@ -16,14 +16,10 @@
       </div>
 <!-- /.entry-content -->
       <footer class="post-info text-muted">
-        <button type="button" class="btn btn-default">          
           <a href="{{ SITEURL }}/{{ article.category.url }}"><div class="fa fa-lg fa-folder-open"></div> {{ article.category }}</a>
-        </button>
         {% if article.tags %}
         {% for tag in article.tags %}
-        <button type="button" class="btn btn-default">
           <a href="{{ SITEURL }}/{{ tag.url }}"><div class="fa fa-lg fa-tag"></div> {{ tag }}</a>
-        </button>
         {% endfor %}
         {% endif %}
       </footer>
