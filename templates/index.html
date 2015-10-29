@@ -14,6 +14,9 @@
             <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title|striptags }}</a>
             <br/>
             {{ article.summary|striptags }}
+            {% if article.photo_image %}<a href="{{ SITEURL }}/{{ article.url }}"><img src="{{ SITEURL }}/{{ article.photo_image[2] }}"
+                style="display: inline; float: right; margin: 2px 0 2ex 4ex;" /></a>
+            {% endif %}
           </p>
         </div>
       </div>

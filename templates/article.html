@@ -12,11 +12,14 @@
       </header>
 <!-- .entry-content -->
       <div class="entry-content">
-        {{ article.content }}
+      {% if article.photo_image %}<img src="{{ SITEURL }}/{{ article.photo_image[1] }}" />{% endif %}
+      {% include 'article_infos.html' %}
+      {{ article.content }}
       </div>
 <!-- /.entry-content -->
+
       <footer class="post-info text-muted">
-        <button type="button" class="btn btn-default">          
+        <button type="button" class="btn btn-default">
           <a href="{{ SITEURL }}/{{ article.category.url }}"><div class="fa fa-lg fa-folder-open"></div> {{ article.category }}</a>
         </button>
         {% if article.tags %}
@@ -30,4 +33,11 @@
       <!-- /.post-info -->
       {% include 'disqus.html' %}
     </section>
+    {% if article.photo_gallery %}
+    <div class="gallery">
+        {% for name, photo, thumb, exif, caption in article.photo_gallery %}
+        <a href="{{ SITEURL }}/{{ photo }}" title="{{ name }}" exif="{{ exif }}" caption="{{ caption }}"><img src="{{ SITEURL }}/{{ thumb }}"></a>
+        {% endfor %}
+    </div>
+    {% endif %}
     {% endblock %}
