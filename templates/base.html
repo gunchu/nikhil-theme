@@ -6,6 +6,9 @@
   <head>
     {% block head %}
     <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+    {% if (article and article.photo_gallery) or (articles_page and articles_page.object_list[0].photo_gallery) %}
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/magnific-popup.css">
+    {% endif %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
@@ -86,4 +89,30 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     {% include 'analytics.html' %}
   </body>
+  {% if (article and article.photo_gallery) or (articles_page and articles_page.object_list[0].photo_gallery) %}
+      <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+      <!-- Magnific Popup core JS file -->
+      <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/magnific-popup.js"></script>
+      <script>
+      $('.gallery').magnificPopup({
+          delegate: 'a',
+          type: 'image',
+          gallery: {
+              enabled: true,
+              navigateByImgClick: true,
+              preload: [1,2]
+          },
+          image: {
+              titleSrc: function(item) {
+                  if (item.el.attr('caption') && item.el.attr('exif')) {
+                      return (item.el.attr('caption').replace(/\\n/g, '<br />') +
+                          '<small>' + item.el.attr('title') + ' - ' + item.el.attr('exif') + '</small>');
+                  }
+              return item.el.attr('title') + '<small>' + item.el.attr('exif') + '</small>';
+          } }
+      });
+      </script>
+      {% endif %}
 </html>
